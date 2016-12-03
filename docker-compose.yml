@@ -17,8 +17,8 @@ services:
       restart: always
       image: nginx
       volumes:
-        - ./src/frontend/web:/usr/share/nginx/html
-        - ./src/backend/web:/usr/share/nginx/html/office
+        - ./www/frontend/web:/usr/share/nginx/html
+        - ./www/backend/web:/usr/share/nginx/html/office
       environment:
         - VIRTUAL_HOST_WEIGHT=2
         - VIRTUAL_HOST=*/assets/*, */office/assets/*
@@ -28,30 +28,35 @@ services:
       restart: always
       build: ./build/php
       volumes:
-        - ./src:/var/www/html
+        - ./www:/var/www/html
       links:
         - mysql
       environment:
+        - API_TOKEN=<YOUR GITHUB API TOKEN>
         - VIRTUAL_HOST_WEIGHT=1
         - VIRTUAL_HOST=*
-
+        
 
     mysql:
       restart: always
-      image: mysql:latest
+      image: mysql
       container_name: mysql
+      ports:
+        - "3306:3306"
       volumes:
         - ./build/mysql:/docker-entrypoint-initdb.d
-        - ./tmp/mysql:/var/lib/mysql
+        - ./database:/var/lib/mysql:rw
+        - ./stack/localdb/:/stack/localdb:rw
       environment:
         - MYSQL_DATABASE=world
         - MYSQL_ROOT_PASSWORD=password
+      command: "/stack/localdb/run.sh"
 
 
     pma:
       restart: always
       image: phpmyadmin/phpmyadmin
       links:
-        - mysql:db
+       - mysql:db
       ports:
         - 8080:80
