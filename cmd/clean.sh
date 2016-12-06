@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf ./tmp/mysql
+rm -rf ./tmp/database
