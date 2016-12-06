@@ -90,9 +90,5 @@ docker-compose run --rm php ./yii migrate
 This step was built using [mickgeek/yii2-advanced-one-domain-config](https://github.com/mickgeek/yii2-advanced-one-domain-config)
 
 
-
-### SECTION 4 (Last) Restart docker-compose
-```
-sudo docker-compose stop
-sudo docker-compose up -d
-```
+## Screenshot
+[Requirements 1](https://www.mx7.com/i/dd6/JaMuD4.png)
