@@ -1,17 +1,16 @@
 # Ussing
 Referance [jaynarol](https://www.jaynarol.com/docker-compose-part-1/).
-###### Warning: This version can not use APC Extensions
 
 ## Packages
 - loadbalance use nginx when request assets/\* url but other request use apache
 - php 5.6 - apache
 - nginx
-- maysql:latest
+- maysql
 - phpmyadmin (http://[host]:8080)
 
 ## Workspace directory
-- Source files: src
-- MySql Data: tmp/mysql
+- Source files: app
+- MySql Data: database
 
 
 
@@ -48,6 +47,12 @@ git clone https://github.com/kuakling/docker-compose-yii-serv.git your-docker-co
 cd your-docker-compose-name
 ```
 
+#### Step 4 Update composer.sh
+1. Create Personal Access Token from [github.com](https://github.com/settings/tokens) and copy it.
+2. open build/php/composer.sh with any text editor
+4. Find composer config -g github-oauth.github.com YOUR GITHUB TOKEN
+3. Replace your token in to YOUR GITHUB TOKEN and save file
+
 #### Step 4 Build (long time :clock8:)
 ```
 sudo docker-compose build
@@ -58,53 +63,35 @@ sudo docker-compose build
 sudo docker-compose up -d
 ```
 
-### SECTION 3 Test run web
-Open web browser and enter http://localhost or http://[host ip address]
 
-
-### SECTION 4 Installing [Yii Framework 2](http://www.yiiframework.com/)
-#### Step 1 Install php5-cli
+### SECTION 3 Installing [Yii Framework 2](http://www.yiiframework.com/)
+#### Step 1 Install Yii Framework 2 (basic or advanced template) 
+long time :clock8:
+##### if cannot install please empty directory /var/www/html on container or app on machine (delete all normal and hidden)
 ```
-sudo apt-get install php5-cli
-```
-
-#### Step 2 Installing [Composer](https://getcomposer.org/)
-```
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-```
-Test Composer
-```
-composer
-```
-The composer command shows that successful installation this step.
-
-#### Step 3 Installing fxp/composer-asset-plugin
-```
-composer global require "fxp/composer-asset-plugin:^1.2.0"
+docker-compose run --rm php composer create-project --prefer-dist yiisoft/yii2-app-advanced /var/www/html
 ```
 
-#### Step 4 Remove or Rename "src" directory
+#### Step 2 Change execute mode for ./init and execute it (for advanced template)
 ```
-mv ./src/ ./src_bk/
+docker-compose run --rm php chmod +x ./init
 ```
-
-#### Step 5 Installing Yii (long time :clock8:)
-##### [Basic template](http://www.yiiframework.com/doc-2.0/guide-start-installation.html)
+execute ./init
 ```
-composer create-project --prefer-dist yiisoft/yii2-app-basic src
-```
-##### Or [Advanced template](https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md)
-```
-composer create-project --prefer-dist yiisoft/yii2-app-advanced src
+docker-compose run --rm php ./init
 ```
 
-#### Step 6 Configs Yii and .htaccess
+#### Step 3 Migrate (for advanced template)
+```
+docker-compose run --rm php ./yii migrate
+```
+
+#### Step 4 Configs Yii and .htaccess (Dispensable)
 This step was built using [mickgeek/yii2-advanced-one-domain-config](https://github.com/mickgeek/yii2-advanced-one-domain-config)
 
 
 
-### SECTION 5 (Last) Restart docker-compose
+### SECTION 4 (Last) Restart docker-compose
 ```
 sudo docker-compose stop
 sudo docker-compose up -d
