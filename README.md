@@ -91,5 +91,5 @@ This step was built using [mickgeek/yii2-advanced-one-domain-config](https://git
 
 
 ## Screenshot
-[Requirements 1](https://www.mx7.com/i/dd6/JaMuD4.png)
-[Requirements 2](https://www.mx7.com/i/93e/J8QLln.png)
+* [Requirements 1](https://www.mx7.com/i/dd6/JaMuD4.png)
+* [Requirements 2](https://www.mx7.com/i/93e/J8QLln.png)
