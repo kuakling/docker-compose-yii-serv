@@ -53,12 +53,12 @@ cd your-docker-compose-name
 4. Find **composer config -g github-oauth.github.com ~~YOUR GITHUB TOKEN~~**
 3. Replace your token in to YOUR GITHUB TOKEN and save file
 
-#### Step 4 Build (long time :clock8:)
+#### Step 5 Build (long time :clock8:)
 ```
 sudo docker-compose build
 ```
 
-#### Step 5 Run docker-compose
+#### Step 6 Run docker-compose
 ```
 sudo docker-compose up -d
 ```
