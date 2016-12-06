@@ -50,7 +50,7 @@ cd your-docker-compose-name
 #### Step 4 Update composer.sh
 1. Create Personal Access Token from [github.com](https://github.com/settings/tokens) and copy it.
 2. open build/php/composer.sh with any text editor
-4. Find *composer config -g github-oauth.github.com YOUR GITHUB TOKEN*
+4. Find **composer config -g github-oauth.github.com ~~YOUR GITHUB TOKEN~~**
 3. Replace your token in to YOUR GITHUB TOKEN and save file
 
 #### Step 4 Build (long time :clock8:)
