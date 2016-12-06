@@ -55,12 +55,12 @@ cd your-docker-compose-name
 
 #### Step 5 Build (long time :clock8:)
 ```
-sudo docker-compose build
+docker-compose build
 ```
 
 #### Step 6 Run docker-compose
 ```
-sudo docker-compose up -d
+docker-compose up -d
 ```
 
 
