@@ -93,3 +93,5 @@ This step was built using [mickgeek/yii2-advanced-one-domain-config](https://git
 ## Screenshot
 * [Requirements 1](https://www.mx7.com/i/dd6/JaMuD4.png)
 * [Requirements 2](https://www.mx7.com/i/93e/J8QLln.png)
+* [Apache on normal](https://www.mx7.com/i/b18/itoPqk.png)
+* [nginx on assets](https://www.mx7.com/i/d43/Qga0Xs.png)
