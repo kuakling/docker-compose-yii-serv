@@ -9,7 +9,7 @@ Referance [jaynarol](https://www.jaynarol.com/docker-compose-part-1/).
 - phpmyadmin (http://[host]:8080)
 
 ## Workspace directory
-- Source files: app
+- Yii Application: app
 - MySql Data: database
 
 
