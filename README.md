@@ -61,6 +61,7 @@ docker-compose build
 ```
 
 #### Step 6 Run docker-compose
+##### When run on linux(native) os. Please comment or remove shell command in mysql of docker-compose.yml line [48](https://github.com/kuakling/docker-compose-yii-serv/blob/master/docker-compose.yml#L48) and [52](https://github.com/kuakling/docker-compose-yii-serv/blob/master/docker-compose.yml#L52) 
 ```
 docker-compose up -d
 ```
