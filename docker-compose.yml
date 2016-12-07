@@ -45,11 +45,11 @@ services:
       volumes:
         - ./build/mysql/initdb:/docker-entrypoint-initdb.d
         - ./database:/var/lib/mysql
-        - ./build/mysql/sh:/build/mysql/sh
+        - ./build/mysql/sh:/build/mysql/sh #comment or remove this line when run on linux(native) os
       environment:
         - MYSQL_DATABASE=world
         - MYSQL_ROOT_PASSWORD=password
-      command: "/build/mysql/sh/permission.sh"
+      command: "/build/mysql/sh/permission.sh" #comment or remove this line when run on linux(native) os
 
 
     pma:
