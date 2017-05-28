@@ -33,7 +33,7 @@ RUN docker-php-ext-install intl \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
-    && pecl install memcached \ 
+    && pecl install memcached-2.2.0 \ 
     && docker-php-ext-enable memcached \
     && pecl install apcu-4.0.11 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
 
