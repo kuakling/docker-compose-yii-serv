@@ -39,7 +39,7 @@ RUN docker-php-ext-install intl \
 
     && apt-get purge -y g++ \
     && apt-get autoremove -y \
-    && rm -r /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/* \
 
     # Fix write permissions with shared folders
     && usermod -u 1000 www-data
