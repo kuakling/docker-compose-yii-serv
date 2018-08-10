@@ -14,12 +14,21 @@ RUN apt-get update \
             zlib1g-dev \
             libmagickwand-dev \
             libpq-dev \
+            apache2 \
+            nano \
             libmemcached-dev \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-
     # Enable mod_rewrite
     && a2enmod rewrite
+# Manually set up the apache environment variables
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_LOCK_DIR /var/lock/apache2
+ENV APACHE_PID_FILE /var/run/apache2.pid
+# Update the default apache site with the config we created.
+ADD conf/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
     # Install PHP extensions
 RUN docker-php-ext-install intl \
@@ -36,7 +45,6 @@ RUN docker-php-ext-install intl \
     && pecl install memcached-2.2.0 \ 
     && docker-php-ext-enable memcached \
     && pecl install apcu-4.0.11 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
-
     && apt-get purge -y g++ \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
