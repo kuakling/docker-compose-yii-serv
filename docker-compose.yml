@@ -7,7 +7,7 @@ services:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
       ports:
-        - 80:80
+        - 85:80
       links:
         - nginx
         - php
@@ -16,13 +16,15 @@ services:
     nginx:
       restart: always
       image: nginx
-      # volumes:
-      #   - ./app/frontend/web:/usr/share/nginx/html
-      #   - ./app/backend/web:/usr/share/nginx/html/office
+      volumes:
+         - ./app/realestate.co.rw/website_config/instances/cp/assets:/usr/share/nginx/html/assets/cp
+         - ./app/realestate.co.rw/portal_config/instances/listingpresentations/assets:/usr/share/nginx/html/assets/listingpresentations
+         - ./app/realestate.co.rw/website_config/themes/default_rw_rw/assets:/usr/share/nginx/html/assets/default_rw_rw
+         - ./app/realestate.co.rw/portal_config/themes/dev_rw/assets:/usr/share/nginx/html/assets/dev_rw
+         - ./app/realestate.co.rw/controlpanel/public/assets:/usr/share/nginx/html/assets
       environment:
         - VIRTUAL_HOST_WEIGHT=2
-        - VIRTUAL_HOST=*/assets/*, */office/assets/*
-
+        - VIRTUAL_HOST=*/assets/*
 
     php:
       restart: always
@@ -38,19 +40,17 @@ services:
 
     mysql:
       restart: always
-      image: mysql
+      image: mysql:5.6
       container_name: mysql
       ports:
-        - "3306:3306"
+        - "13306:3306"
       volumes:
         - ./build/mysql/initdb:/docker-entrypoint-initdb.d
         - ./database:/var/lib/mysql
-        - ./build/mysql/sh:/build/mysql/sh #comment or remove this line when run on linux(native) os
+  #      - ./build/mysql/sh:/build/mysql/sh #comment or remove this line when run on linux(native) os
       environment:
         - MYSQL_DATABASE=world
         - MYSQL_ROOT_PASSWORD=password
-      command: "/build/mysql/sh/permission.sh" #comment or remove this line when run on linux(native) os
-
 
     pma:
       restart: always
