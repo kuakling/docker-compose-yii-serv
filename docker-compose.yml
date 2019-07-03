@@ -38,7 +38,7 @@ services:
 
     mysql:
       restart: always
-      image: mysql
+      image: mysql:5.6
       container_name: mysql
       ports:
         - "3306:3306"
@@ -49,8 +49,6 @@ services:
       environment:
         - MYSQL_DATABASE=world
         - MYSQL_ROOT_PASSWORD=password
-      command: "/build/mysql/sh/permission.sh" #comment or remove this line when run on linux(native) os
-
 
     pma:
       restart: always
